@@ -1,0 +1,37 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "richeek45/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "richeek45/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image":"richeek45/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image":"richeek45/multi-nginx",
+      "hostname":"nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": "80",
+          "containerPort": "3050"
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}
+

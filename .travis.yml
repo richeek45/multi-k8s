@@ -21,3 +21,15 @@ after_success:
   - docker push richeek45/multi-nginx
   - docker push richeek45/multi-server
   - docker push richeek45/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: Multidocker-env
+  bucket_name: elasticbeanstalk-us-east-2-701670403746
+  bucket_path: docker-multi
+  on: 
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
