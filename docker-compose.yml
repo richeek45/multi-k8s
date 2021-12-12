@@ -7,7 +7,10 @@ services:
   redis:
     image: 'redis:latest'  
   nginx: 
-    restart: always  
+    restart: always 
+    depends_on:
+      - api
+      - client 
     build: 
       dockerfile: Dockerfile.dev
       context: ./nginx
